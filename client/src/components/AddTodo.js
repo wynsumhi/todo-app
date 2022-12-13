@@ -9,13 +9,19 @@ const AddTodo = ({ addItem }) => {
 
   const onButtonClick = () => {
     // props로 받아온 additem 함수 실행
+
+    if (todoItem.title == "") {
+      alert("할일을 작성하세요");
+    }
     addItem(todoItem);
     setTodoItem({ title: "" });
   };
 
   const onEnterKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && todoItem.title !== "") {
       onButtonClick();
+    } else if (e.key === "Enter" && todoItem.title == "") {
+      alert("할일을 입력하세요!");
     }
   };
 
