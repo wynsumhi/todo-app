@@ -31,6 +31,16 @@ const App = () => {
     // );
   };
 
+  // 전체 Todo 리스트(todoItems)는 App 컴포넌트에서 관리하고 있으므로
+  // deleteItem() 함수는 App 컴포넌트에 작성해야 함
+  const deleteItem = (targetItem) => {
+    console.log(targetItem);
+    const newItem = todoItems.filter(
+      (todoItem) => todoItem.id !== targetItem.id
+    );
+    setTodoItems(newItem);
+  };
+
   return (
     // map 함수 사용
     // 힌트1. key 속성 사용
@@ -39,7 +49,7 @@ const App = () => {
       <AddTodo addItem={addItem}></AddTodo>
       {todoItems.map((item) => {
         // console.log(item); // {id: 1, title: 'My Todo1', done: false}
-        return <Todo key={item.id} item={item} />;
+        return <Todo key={item.id} item={item} deleteItem={deleteItem} />;
       })}
     </div>
   );
