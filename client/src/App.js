@@ -50,7 +50,7 @@ const App = () => {
       <div className="wrap">
         <Header></Header>
         <AddTodo addItem={addItem}></AddTodo>
-        <div className="left-todo">{todoItems.length}</div>
+        <div className="left-todo">남은 할 일 : {todoItems.length}</div>
         {todoItems.length > 0 ? (
           todoItems.map((item) => {
             // console.log(item); // {id: 1, title: 'My Todo1', done: false}

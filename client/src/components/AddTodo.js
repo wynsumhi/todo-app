@@ -13,9 +13,9 @@ const AddTodo = ({ addItem }) => {
 
   const onButtonClick = () => {
     // props로 받아온 additem 함수 실행
-
-    if (todoItem.title == "") {
+    if (todoItem.title.trim().length === 0) {
       Swal.fire("할 일을 작성해주세요!");
+      setTodoItem({ title: "" });
       return;
     }
     addItem(todoItem);
@@ -23,10 +23,8 @@ const AddTodo = ({ addItem }) => {
   };
 
   const onEnterKeyPress = (e) => {
-    if (e.key === "Enter" && todoItem.title !== "") {
+    if (e.key === "Enter") {
       onButtonClick();
-    } else if (e.key === "Enter" && todoItem.title == "") {
-      Swal.fire("할 일을 작성해주세요!");
     }
   };
 
@@ -39,6 +37,7 @@ const AddTodo = ({ addItem }) => {
         value={todoItem.title}
         onChange={(e) => setTodoItem({ title: e.target.value })}
         onKeyPress={onEnterKeyPress}
+        autoFocus
       />
       <label htmlFor="add"></label>
       <button onClick={onButtonClick}>
