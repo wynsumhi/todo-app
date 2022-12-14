@@ -1,0 +1,27 @@
+@import "utils";
+
+.Todo {
+  width: 80%;
+  margin: 0 auto;
+
+  input[type="checkbox"] {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #bcbcbc;
+    margin-right: 20px;
+    cursor: pointer;
+
+    &:checked {
+      background: #333;
+    }
+  }
+
+  input[type="text"] {
+    width: 80%;
+  }
+
+  .trash {
+    font-size: 2em;
+  }
+}

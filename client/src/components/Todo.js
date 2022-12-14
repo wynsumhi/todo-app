@@ -1,5 +1,8 @@
 import { useState } from "react";
-import "../scss/Todo.scss";
+import "../styles/Todo.scss";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../styles/Todo.scss";
 
 // 1. 함수형 컴포넌트
 // 2. input(checkbox) 와 label을 랜더링하는 컴포넌트!
@@ -69,13 +72,15 @@ const Todo = ({ item, deleteItem }) => {
       <input
         type="text"
         value={todoItem.title}
-        id={`todo${item.id} input`}
+        id={`todo${item.id}`}
         onChange={editEventHandler}
         onClick={readOnlyHandler}
         onKeyPress={onEnterKeyPress}
         readOnly={readOnly}
       />
-      <button onClick={onDeleteBtnClick}>DELETE</button>
+      <button onClick={onDeleteBtnClick}>
+        <FontAwesomeIcon icon={faTrashAlt} className="trash" />
+      </button>
     </div>
   );
 };

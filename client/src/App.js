@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Todo from "./components/Todo";
 import AddTodo from "./components/AddTodo";
+import Header from "./components/Header";
 
 const App = () => {
   const [todoItems, setTodoItems] = useState([
@@ -45,12 +46,20 @@ const App = () => {
     // map 함수 사용
     // 힌트1. key 속성 사용
     // 힌트2. 각 todo(데이터)를 props로전달
-    <div className="App">
-      <AddTodo addItem={addItem}></AddTodo>
-      {todoItems.map((item) => {
-        // console.log(item); // {id: 1, title: 'My Todo1', done: false}
-        return <Todo key={item.id} item={item} deleteItem={deleteItem} />;
-      })}
+    <div>
+      <div className="wrap">
+        <Header></Header>
+        <AddTodo addItem={addItem}></AddTodo>
+        <div className="left-todo">{todoItems.length}</div>
+        {todoItems.length > 0 ? (
+          todoItems.map((item) => {
+            // console.log(item); // {id: 1, title: 'My Todo1', done: false}
+            return <Todo key={item.id} item={item} deleteItem={deleteItem} />;
+          })
+        ) : (
+          <p className="empty-todos">Todo를 추가해주세요</p>
+        )}
+      </div>
     </div>
   );
 };

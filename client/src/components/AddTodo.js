@@ -1,4 +1,8 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
+import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../styles/AddTodo.scss";
 
 const AddTodo = ({ addItem }) => {
   // 사용자 입력을 저장할 객체
@@ -11,7 +15,8 @@ const AddTodo = ({ addItem }) => {
     // props로 받아온 additem 함수 실행
 
     if (todoItem.title == "") {
-      alert("할일을 작성하세요");
+      Swal.fire("할 일을 작성해주세요!");
+      return;
     }
     addItem(todoItem);
     setTodoItem({ title: "" });
@@ -21,7 +26,7 @@ const AddTodo = ({ addItem }) => {
     if (e.key === "Enter" && todoItem.title !== "") {
       onButtonClick();
     } else if (e.key === "Enter" && todoItem.title == "") {
-      alert("할일을 입력하세요!");
+      Swal.fire("할 일을 작성해주세요!");
     }
   };
 
@@ -36,7 +41,9 @@ const AddTodo = ({ addItem }) => {
         onKeyPress={onEnterKeyPress}
       />
       <label htmlFor="add"></label>
-      <button onClick={onButtonClick}>ADD</button>
+      <button onClick={onButtonClick}>
+        <FontAwesomeIcon icon={faCalendarPlus} className="plus" />
+      </button>
     </div>
   );
 };

@@ -1,0 +1,19 @@
+@import "utils";
+
+.AddTodo {
+  width: 90%;
+  margin: 20px auto 40px;
+  position: relative;
+
+  input[type="text"] {
+    width: 90%;
+    border-bottom: 1px solid #333;
+  }
+
+  .plus {
+    font-size: 2em;
+    position: absolute;
+    top: 20px;
+    right: 10%;
+  }
+}
