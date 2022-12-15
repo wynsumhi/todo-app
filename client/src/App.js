@@ -1,16 +1,26 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import Todo from "./components/Todo";
 import AddTodo from "./components/AddTodo";
 import Header from "./components/Header";
 
 const App = () => {
-  const [todoItems, setTodoItems] = useState([
-    { id: 1, title: "my Todo1", done: false },
-    { id: 2, title: "my Todo2", done: false },
-    { id: 3, title: "my Todo3", done: true },
-  ]);
+  const [todoItems, setTodoItems] = useState([]);
 
   const todoId = useRef(4);
+
+  useEffect(() => {
+    console.log("첫랜더링 완료!");
+
+    const getTodos = async () => {
+      let response = await axios.get("http://localhost:8080/todos");
+      console.log(response.data);
+
+      setTodoItems(response.data.slice(0, 20));
+    };
+
+    getTodos();
+  }, []);
 
   // AddTodo 컴포넌트는 상위 컴포넌트(App)의 todoItems(state)에 접근 불가능
   // 상위 컴포넌트 (App)은 AddTodo 컴포넌트 접근 가능
